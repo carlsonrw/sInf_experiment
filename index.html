@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="jspsych-6.1.0/jspsych.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-slider-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-reconstruction.js"></script>
+    <script src="jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
+    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    
+    
+    <!--margin-right: 50px;-->
+        <!-- CSS -->
+        <style type="text/css">
+            
+            #wrapper {
+              display: flex;
+                align-content: center;
+                text-align: center;
+                margin: 0px;
+            }
+
+            #leftStim {
+              flex: 0 0 46%;
+                text-align: center;
+                align-content: center;
+                position: relative;
+                align-items:center;
+                padding: 10px;
+                 font-size: 40px;
+            }
+
+            #rightStim {
+              flex: 1;
+                text-align: center;
+                align-content: center;
+                position: relative;
+                align-items:center;
+                padding: 10px;
+                 font-size: 40px;
+            }
+            
+            #leftNum {
+              flex: 0 0 50%;
+                text-align: center;
+                align-content: center;
+                position: relative;
+                align-items:center;
+                border: 3px solid #000000;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                padding: 20px;
+                font-size: 36px;
+                color: 
+                    
+            }
+
+            #rightNum {
+              flex: 1;
+                text-align: center;
+                align-content: center;
+                position: relative;
+                align-items:center;
+                border: 3px solid #000000;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                padding: 20px;
+                font-size: 36px;
+            }
+            
+            .retweet-button {
+                border: none;
+/*                outline: none;*/
+/*                background: none;*/
+                padding: 0;
+            }
+
+            .instructions {
+                margin-right: 200px;
+                margin-left: 200px;
+                text-align: justify;
+            }
+
+            #root {
+                background-color: #eee;
+            }
+            
+            p.small {
+              line-height: 0.8;
+            }
+
+            img {
+                width:200px;
+                height:auto;
+            }
+
+
+       
+        </style>
+
+    
+    
+  </head>
+  <body></body>
+  <script>
+
+    /* create timeline */
+    var timeline = [];
+      
+      
+      
+    /* define instructions trial */
+    var instructions = {
+      type: "instructions",
+      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning money for yourself, or for the <b>American Red Cross (ARC)</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning money for yourself or earning credit on a <b>Starbucks eGift Card</b> for yourself.</p><p>When making both types of choices (choices involving charity, or a gift card for yourself), you will have to select between two amounts of <b>points</b> toward each option on the screen. Each point is worth 2 cents.</strong></p>',
+              
+      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the ARC, and 52 choices between money versus a gift card for yourself. One of these choices will be randomly selected and implemented at the end of the study. This randomly selected choice will determine the size (and nature) of the payout. You will not know which of these choices will count while deciding, and thus should treat each choices as if it were the only one that counts.</p><p>If a choice to donate to the ARC is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolfici. If a choice to earn gift card credit is selected, a Starbucks eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
+              
+      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for ARC. Remember, each of these points is worth 2 cents, rounded to the nearest cent. <b>You can only choose one option, and you can do so by clicking on the points box</b></p></div><p><img src="img/ss_choice_char.png"></p>',
+              
+      '<div class = "instructions"><p>Another example of a choice you might encounter, this time between earning money for yourself and earning credit on the Starbucks eGift Card:</p></div><p><img src="img/ss_choice_gc.png"></p>'],
+    show_clickable_nav: true
+    };
+    timeline.push(instructions);   
+      
+      
+      
+         var randStart_pro_char = Math.floor(Math.random()*10);
+         var randStart_active_char = Math.floor(Math.random()*10);
+         var randStart_retro_char = Math.floor(Math.random()*10);
+         var randStart_pro_gc = Math.floor(Math.random()*10);
+         var randStart_active_gc = Math.floor(Math.random()*10);
+         var randStart_retro_gc = Math.floor(Math.random()*10);
+      
+            randStart_pro_char = randStart_pro_char *.1; /*/ for 7 pt scale /*/
+            randStart_active_char = randStart_active_char *.1; /*/ for 7 pt scale /*/
+            randStart_retro_char = randStart_retro_char *.1; /*/ for 7 pt scale /*/
+            randStart_pro_gc = randStart_pro_gc *.1; /*/ for 7 pt scale /*/
+            randStart_active_gc = randStart_active_gc *.1; /*/ for 7 pt scale /*/
+            randStart_retro_gc = randStart_retro_gc *.1; /*/ for 7 pt scale /*/
+
+    
+    var sample_function_char = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">How much do you want to earn money for <br><b><font color="777777">yourself</font></b> versus money for <b><font color="CA0301">ARC</font></b>?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="1.5">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for <b>yourself</b><br>'+
+            
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for <b>ARC</b><font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #CA0301; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }
+    
+    
+    var sample_function_gc = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">How much do you want to earn <b><font color="777777">money</font></b><br>versus a <b><font color="106E32">Starbucks gift card</font></b> for yourself?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="1.5">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by <b>money</b><br>'+ 
+            
+           '- more <b><font color="106E32">green</font></b> = more motivated by a <b>gift card</b><font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #106E32; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }
+ 
+    
+    var think_pro = {
+      type: "instructions",
+      pages: ['<div class="instructions"><p>Think about the choices you are about to make.</p>'],
+    show_clickable_nav: true
+    };
+    timeline.push(think_pro);  
+      
+      
+    var motInf_pro_char = {
+        type: 'reconstruction',
+        stim_function: sample_function_char,
+        starting_value: randStart_pro_char
+    }
+    timeline.push(motInf_pro_char); 
+      
+    
+    var motInf_pro_char_conf = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+        labels: ['Not at all (0)', 'Extremely (10)'],
+    };
+      timeline.push(motInf_pro_char_conf);  
+      
+      
+    var motInf_pro_gc = {
+        type: 'reconstruction',
+        stim_function: sample_function_gc,
+        starting_value: randStart_pro_gc
+    }
+    timeline.push(motInf_pro_gc);  
+      
+
+    var motInf_pro_gc_conf = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+        labels: ['Not at all (0)', 'Extremely (10)'],
+        };
+      timeline.push(motInf_pro_gc_conf);  
+      
+      
+      
+      
+      
+      
+            
+////////////////////////
+//////////Task//////////
+//////////////////////// 
+      
+    
+      
+    var degrade_distS = [[22.0, 23.0, 120.0, 24.0, 71.4, 20.0, 105.8, 21.0, 140.0, 25.0, 25.2, 21.0, 120.0, 21.0, 39.6, 22.0, 61.6, 21.0, 133.4, 22.0, 100.0, 22.0, 59.8, 20.0, 20.0, 129.6, 21.0, 38.4, 20.0, 60.0, 23.0, 75.6, 24.0, 44.0, 25.0, 35.0, 25.0, 105.6, 20.0, 67.2, 24.0, 57.6, 22.0, 48.4, 20.0, 130.0, 76.0, 88.0, 24.0, 88.2, 23.0],[22.0, 92.0, 20.0, 139.2, 21.0, 92.0, 23.0, 33.6, 25.0, 140.0, 21.0, 25.2, 25.0, 50.4, 22.0, 30.8, 22.0, 109.2, 23.0, 66.0, 20.0, 70.4, 23.0, 120.0, 36.0, 24.0, 79.8, 24.0, 100.0, 20.0, 110.4, 21.0, 100.8, 22.0, 90.0, 25.0, 70.0, 24.0, 52.0, 21.0, 52.8, 24.0, 96.8, 22.0, 40.0, 25.0, 20.0, 22.0, 129.6, 21.0, 78.2]];
+      
+    var degrade_distP = [[22.0, 23.0, 120.0, 24.0, 71.4, 20.0, 105.8, 21.0, 140.0, 25.0, 25.2, 21.0, 120.0, 21.0, 39.6, 22.0, 61.6, 21.0, 133.4, 22.0, 100.0, 22.0, 59.8, 20.0, 20.0, 129.6, 21.0, 38.4, 20.0, 60.0, 23.0, 75.6, 24.0, 44.0, 25.0, 35.0, 25.0, 105.6, 20.0, 67.2, 24.0, 57.6, 22.0, 48.4, 20.0, 130.0, 76.0, 88.0, 24.0, 88.2, 23.0],[22.0, 92.0, 20.0, 139.2, 21.0, 92.0, 23.0, 33.6, 25.0, 140.0, 21.0, 25.2, 25.0, 50.4, 22.0, 30.8, 22.0, 109.2, 23.0, 66.0, 20.0, 70.4, 23.0, 120.0, 36.0, 24.0, 79.8, 24.0, 100.0, 20.0, 110.4, 21.0, 100.8, 22.0, 90.0, 25.0, 70.0, 24.0, 52.0, 21.0, 52.8, 24.0, 96.8, 22.0, 40.0, 25.0, 20.0, 22.0, 129.6, 21.0, 78.2]];
+      
+    var loop_order = jsPsych.randomization.sampleWithoutReplacement(["char","gc"], 1)[0];
+    if(loop_order == 'char') {
+        var first = degrade_distS
+        var second = degrade_distP
+    } else {
+        var first = degrade_distP
+        var second = degrade_distS
+    };
+    
+     
+    var degrade_n = 51;
+    var j;
+      
+      
+      
+      
+//START BLOCKS WITH FIXATION
+      
+    var startTask = {
+      type: "instructions",
+      pages: ['<div class="instructions"><p>Continue to the next screen when you are ready to begin the the first set of choices.</p>'],
+    show_clickable_nav: true
+    };
+        timeline.push(startTask);   
+      
+   var fixation = {
+    type: 'html-keyboard-response',
+    stimulus: "<p style='font-size: 50px'> + </p>",
+    choices: [27],
+    trial_duration: 750
+    };
+    timeline.push(fixation);  
+      
+      
+    if(loop_order == 'char') {
+        
+//CHAR FIRST
+        for (j = 0; j < degrade_n; j++) {
+            if(j < 25) {
+                var char_half1 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(char_half1);
+                timeline.push(fixation);
+            };
+
+
+              if(j == 25) {
+                /* define instructions trial */
+                var motInf_active_char = {
+                    type: 'reconstruction',
+                    stim_function: sample_function_char,
+                    starting_value: randStart_active_char
+                }
+                timeline.push(motInf_active_char);};
+
+              if(j == 25) {
+                var motInf_active_char_conf = {
+                    type: 'html-slider-response',
+                    min: 0,
+                    max: 10,
+                    start: 5,
+                    step: 1,
+                    stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+                    labels: ['Not at all (0)', 'Extremely (10)'],
+                };
+                  timeline.push(motInf_active_char_conf);}; 
+
+              if(j >= 25) {
+                var char_half2 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(char_half2);
+                timeline.push(fixation);
+            };};
+        
+            /* define instructions trial */
+            var nextTask = {
+              type: "instructions",
+              pages: ['<div class="instructions"><p>You have completed the first set of choices. Half way there! <br> Press continue to proceed to the new set of choices when you are ready.</p>'],
+            show_clickable_nav: true
+            };
+                timeline.push(nextTask);   
+        
+        
+//GC SECOND
+        for (j = 0; j < degrade_n; j++) {
+
+            if(j < 25) {
+                var gc_half1 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(gc_half1);
+                timeline.push(fixation);
+            };
+
+
+              if(j == 25) {
+                /* define instructions trial */
+                var motInf_active_gc = {
+                    type: 'reconstruction',
+                    stim_function: sample_function_gc,
+                    starting_value: randStart_active_gc
+                }
+                timeline.push(motInf_active_gc);};
+            
+              if(j == 25) {
+                var motInf_active_gc_conf = {
+                    type: 'html-slider-response',
+                    min: 0,
+                    max: 10,
+                    start: 5,
+                    step: 1,
+                    stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+                    labels: ['Not at all (0)', 'Extremely (10)'],
+                };
+                  timeline.push(motInf_active_gc_conf);}; 
+
+              if(j >= 25) {
+                var gc_half2 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(gc_half2);
+                timeline.push(fixation);
+            };};
+
+        
+        } else {
+            
+//GC FIRST
+        for (j = 0; j < degrade_n; j++) {
+            if(j < 25) {
+                var gc_half1 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(gc_half1);
+                timeline.push(fixation);
+            };
+
+
+              if(j == 25) {
+                /* define instructions trial */
+                var motInf_active_gc = {
+                    type: 'reconstruction',
+                    stim_function: sample_function_gc,
+                    starting_value: randStart_active_gc
+                }
+                timeline.push(motInf_active_gc);};
+            
+              if(j == 25) {
+                var motInf_active_gc_conf = {
+                    type: 'html-slider-response',
+                    min: 0,
+                    max: 10,
+                    start: 5,
+                    step: 1,
+                    stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+                    labels: ['Not at all (0)', 'Extremely (10)'],
+                };
+                  timeline.push(motInf_active_gc_conf);}; 
+
+              if(j >= 25) {
+                var gc_half2 = {
+                    type: 'html-button-response',
+                    stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
+                    choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                    margin_horizontal: '100px',
+                    button_html: '<button class="retweet-button">%choice%</button>',
+                };
+                timeline.push(gc_half2);
+                timeline.push(fixation);
+            };};
+        
+            
+            /* define instructions trial */
+            var nextTask = {
+              type: "instructions",
+              pages: ['<div class="instructions"><p>You have completed the first set of choices. Half way there! <br> Press continue to proceed to the new set of choices when you are ready.</p>'],
+            show_clickable_nav: true
+            };
+                timeline.push(nextTask);   
+            
+//CHAR SECOND 
+        for (j = 0; j < degrade_n; j++) {
+
+                if(j < 25) {
+                    var char_half1 = {
+                        type: 'html-button-response',
+                        stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
+                        choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                        margin_horizontal: '100px',
+                        button_html: '<button class="retweet-button">%choice%</button>',
+                    };
+                    timeline.push(char_half1);
+                    timeline.push(fixation);
+                };
+
+                  if(j == 25) {
+                    /* define instructions trial */
+                    var motInf_active_char = {
+                        type: 'reconstruction',
+                        stim_function: sample_function_char,
+                        starting_value: randStart_active_char
+                    }
+                    timeline.push(motInf_active_char);};
+            
+                  if(j == 25) {
+                    var motInf_active_char_conf = {
+                        type: 'html-slider-response',
+                        min: 0,
+                        max: 10,
+                        start: 5,
+                        step: 1,
+                        stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+                        labels: ['Not at all (0)', 'Extremely (10)'],
+                    };
+                      timeline.push(motInf_active_char_conf);}; 
+
+                  if(j >= 25) {
+                    var char_half2 = {
+                        type: 'html-button-response',
+                        stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
+                        choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
+                        margin_horizontal: '100px',
+                        button_html: '<button class="retweet-button">%choice%</button>',
+                    };
+                    timeline.push(char_half2);
+                    timeline.push(fixation);
+                };};      
+        };
+         
+
+
+
+    var think_retro = {
+      type: "instructions",
+      pages: ['<div class="instructions"><p>Consider about the choices you made.</p>'],
+    show_clickable_nav: true
+    };
+    timeline.push(think_retro);  
+      
+      
+    var motInf_retro_char = {
+        type: 'reconstruction',
+        stim_function: sample_function_char,
+        starting_value: randStart_retro_char
+    }
+    timeline.push(motInf_retro_char); 
+      
+    
+    var motInf_pro_retro_conf = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+        labels: ['Not at all (0)', 'Extremely (10)'],
+    };
+      timeline.push(motInf_pro_retro_conf);  
+      
+      
+    var motInf_retro_gc = {
+        type: 'reconstruction',
+        stim_function: sample_function_gc,
+        starting_value: randStart_retro_gc
+    }
+    timeline.push(motInf_retro_gc);  
+      
+
+    var motInf_retro_gc_conf = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>How <b>confident</b> are you that you <br>reported your motives accurately?<br></p>",
+        labels: ['Not at all (0)', 'Extremely (10)'],
+        };
+      timeline.push(motInf_retro_gc_conf);     
+      
+      
+      
+      
+// ADDITIONAL QUESTIONS
+      
+    var motInf_typical = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>Typically when you encounter decisions such this one, how motivated are you to earn money for yourself versus a charity?<br></p>",
+        labels: ['Self (-5)', 'Charity (5)'],
+        };
+      timeline.push(motInf_typical);     
+      
+      
+      
+// ADDITIONAL QUESTIONS
+      
+    var motInf_avgPerson = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>When thinking about the average person, how motivated do you think they are to money for themselves versus a charity?<br></p>",
+        labels: ['Self (-5)', 'Charity (5)'],
+        };
+      timeline.push(motInf_avgPerson);  
+      
+      
+// ADDITIONAL QUESTIONS
+      
+    var motInf_fairQ = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>Consider what you think is a 'fair amount' to be motivated to earn money for oneself versus charity. Please indicate below.<br></p>",
+        labels: ['Self (-5)', 'Charity (5)'],
+        };
+      timeline.push(motInf_fairQ);  
+      
+      
+// ADDITIONAL QUESTIONS
+      
+    var motInf_pressure = {
+        type: 'html-slider-response',
+        min: 0,
+        max: 10,
+        start: 5,
+        step: 1,
+        stimulus: "<p>When asked about your motives in the allocation task, did you feel any personal or social pressure to respond a certain way?<br></p>",
+        labels: ['Not at all (0)', 'Extremely (10)'],
+        };
+      timeline.push(motInf_pressure);  
+      
+      
+    /* start the experiment */
+    jsPsych.init({
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+  </script>
+</html>
