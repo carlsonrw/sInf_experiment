@@ -71,10 +71,8 @@
                 font-size: 36px;
             }
             
-            .retweet-button {
+            .choice-button {
                 border: none;
-/*                outline: none;*/
-/*                background: none;*/
                 padding: 0;
             }
 
@@ -188,7 +186,9 @@
         return html;
     }
  
-    
+ 
+
+      
     var think_pro = {
       type: "instructions",
       pages: ['<div class="instructions"><p>Think about the choices you are about to make.</p>'],
@@ -296,7 +296,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(char_half1);
                 timeline.push(fixation);
@@ -330,7 +330,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(char_half2);
                 timeline.push(fixation);
@@ -354,7 +354,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(gc_half1);
                 timeline.push(fixation);
@@ -388,7 +388,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(gc_half2);
                 timeline.push(fixation);
@@ -405,7 +405,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(gc_half1);
                 timeline.push(fixation);
@@ -439,7 +439,7 @@
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
                     choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                     margin_horizontal: '100px',
-                    button_html: '<button class="retweet-button">%choice%</button>',
+                    button_html: '<button class="choice-button">%choice%</button>',
                 };
                 timeline.push(gc_half2);
                 timeline.push(fixation);
@@ -463,7 +463,7 @@
                         stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
                         choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(first[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(first[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                         margin_horizontal: '100px',
-                        button_html: '<button class="retweet-button">%choice%</button>',
+                        button_html: '<button class="choice-button">%choice%</button>',
                     };
                     timeline.push(char_half1);
                     timeline.push(fixation);
@@ -496,7 +496,7 @@
                         stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
                         choices: ['<div id="wrapper"><div id="leftNum">'+ (Math.round(second[0][j] * 100) / 100).toFixed(1) + '</div></div>', '<div id="wrapper"><div id="rightNum">'+(Math.round(second[1][j] * 100) / 100).toFixed(1) + '</div></div>'],
                         margin_horizontal: '100px',
-                        button_html: '<button class="retweet-button">%choice%</button>',
+                        button_html: '<button class="choice-button">%choice%</button>',
                     };
                     timeline.push(char_half2);
                     timeline.push(fixation);
@@ -505,6 +505,13 @@
          
 
 
+    var fin = {
+      type: "instructions",
+      pages: ['<div class="instructions"><p>You have now completed the main section of the study. We will now ask you just a few questions about the study.</p>'],
+    show_clickable_nav: true
+    };
+    timeline.push(fin);  
+      
 
     var think_retro = {
       type: "instructions",
@@ -556,6 +563,9 @@
       
       
       
+      
+      
+      
 // ADDITIONAL QUESTIONS
       
     var motInf_typical = {
@@ -564,8 +574,8 @@
         max: 10,
         start: 5,
         step: 1,
-        stimulus: "<p>Typically when you encounter decisions such this one, how motivated are you to earn money for yourself versus a charity?<br></p>",
-        labels: ['Self (-5)', 'Charity (5)'],
+        stimulus: "<p>Typically when you encounter decisions such this one, <br>how motivated are you to earn money for yourself versus a charity?<br></p>",
+        labels: ['Self (5)', 'Charity (5)'],
         };
       timeline.push(motInf_typical);     
       
@@ -579,8 +589,8 @@
         max: 10,
         start: 5,
         step: 1,
-        stimulus: "<p>When thinking about the average person, how motivated do you think they are to money for themselves versus a charity?<br></p>",
-        labels: ['Self (-5)', 'Charity (5)'],
+        stimulus: "<p>When thinking about the average person, how motivated do<br> you think they are by earning money for themselves versus a charity?<br></p>",
+        labels: ['Self (5)', 'Charity (5)'],
         };
       timeline.push(motInf_avgPerson);  
       
@@ -593,8 +603,8 @@
         max: 10,
         start: 5,
         step: 1,
-        stimulus: "<p>Consider what you think is a 'fair amount' to be motivated to earn money for oneself versus charity. Please indicate below.<br></p>",
-        labels: ['Self (-5)', 'Charity (5)'],
+        stimulus: "<p>Consider what you think is a 'fair amount' to be motivated<br> to earn money for oneself versus charity. Please indicate below.<br></p>",
+        labels: ['Self (5)', 'Charity (5)'],
         };
       timeline.push(motInf_fairQ);  
       
@@ -607,7 +617,7 @@
         max: 10,
         start: 5,
         step: 1,
-        stimulus: "<p>When asked about your motives in the allocation task, did you feel any personal or social pressure to respond a certain way?<br></p>",
+        stimulus: "<p>When asked about your motives in the allocation task, did you<br> feel any personal or social pressure to respond a certain way?<br></p>",
         labels: ['Not at all (0)', 'Extremely (10)'],
         };
       timeline.push(motInf_pressure);  
