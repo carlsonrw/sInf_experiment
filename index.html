@@ -113,16 +113,16 @@
     /* define instructions trial */
     var instructions = {
       type: "instructions",
-      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning money for yourself, or for the <b>American Red Cross (ARC)</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning money for yourself or earning credit on a <b>Starbucks eGift Card</b> for yourself.</p><p>When making both types of choices (choices involving charity, or a gift card for yourself), you will have to select between two amounts of <b>points</b> toward each option on the screen. Each point is worth 2 cents.</strong></p>',
+      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning money for yourself, or for the <b>American Red Cross (ARC)</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning money for yourself or earning credit on a <b>Starbucks eGift Card</b> for yourself.</p><p>When making both types of choices (choices involving charity, or a gift card for yourself), you will have to select between two amounts of <b>money</b> toward each option on the screen.</strong></p>',
               
-      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the ARC, and 52 choices between money versus a gift card for yourself. One of these choices will be randomly selected and implemented at the end of the study. This randomly selected choice will determine the size (and nature) of the payout. You will not know which of these choices will count while deciding, and thus should treat each choices as if it were the only one that counts.</p><p>If a choice to donate to the ARC is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolfici. If a choice to earn gift card credit is selected, a Starbucks eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
+      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the American Red Cross, and 52 choices between money versus a Starbucks eGift Card for yourself. One of these choices will be randomly selected across all participants and implemented at the end of the study. This randomly selected choice will determine the size (and nature) of the payout. Since there a good chance one of your choices could be selected, and you do not know which one might count, you should treat each choice as if it were the only one that counts.</p><p>If a choice to donate to the ARC is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolific. If a choice to earn gift card credit is selected, a Starbucks eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
               
-      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for ARC. Remember, each of these points is worth 2 cents, rounded to the nearest cent. <b>You can only choose one option, and you can do so by clicking on the points box</b></p></div><p><img src="img/ss_choice_char.png"></p>',
+      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for ARC. Remember, this is real money. <b>You can only choose one option, and you can do so by clicking on the money box</b></p></div><p><img src="img/ss_choice_char.png"></p>',
               
       '<div class = "instructions"><p>Another example of a choice you might encounter, this time between earning money for yourself and earning credit on the Starbucks eGift Card:</p></div><p><img src="img/ss_choice_gc.png"></p>'],
     show_clickable_nav: true
     };
-    timeline.push(instructions);   
+//    timeline.push(instructions);   
       
       
       
@@ -146,11 +146,11 @@
         var html = 
            '<p style="font-family:arial;">How much do you want to earn money for <br><b><font color="777777">yourself</font></b> versus money for <b><font color="CA0301">ARC</font></b>?</p>'+
             
-            '<p class = "small" style="font-family:arial;"><font size="1.5">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
             
-           '- more <b><font color="777777">gray</font></b> = more motivated by money for <b>yourself</b><br>'+
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for yourself<br>'+
             
-           '- more <b><font color="CA0301">red</font></b> = more motivated by money for <b>ARC</b><font size="4"></p>'+           
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for ARC<font size="4"></p>'+           
             
            '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
             
@@ -169,11 +169,11 @@
         var html = 
            '<p style="font-family:arial;">How much do you want to earn <b><font color="777777">money</font></b><br>versus a <b><font color="106E32">Starbucks gift card</font></b> for yourself?</p>'+
             
-            '<p class = "small" style="font-family:arial;"><font size="1.5">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
             
-           '- more <b><font color="777777">gray</font></b> = more motivated by <b>money</b><br>'+ 
+           '- more <b><font color="777777">gray</font></b> = more motivated by money<br>'+ 
             
-           '- more <b><font color="106E32">green</font></b> = more motivated by a <b>gift card</b><font size="4"></p>'+           
+           '- more <b><font color="106E32">green</font></b> = more motivated by a gift card<font size="4"></p>'+           
             
            '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
             
@@ -186,7 +186,50 @@
         return html;
     }
  
- 
+     var sample_function_char_retro = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">How much did you want to earn money for <br><b><font color="777777">yourself</font></b> versus money for <b><font color="CA0301">ARC</font></b>?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for yourself<br>'+
+            
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for ARC<font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #CA0301; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }
+    
+    
+    var sample_function_gc_retro = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">How much did you want to earn <b><font color="777777">money</font></b><br>versus a <b><font color="106E32">Starbucks gift card</font></b> for yourself?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money<br>'+ 
+            
+           '- more <b><font color="106E32">green</font></b> = more motivated by a gift card<font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #106E32; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }
 
       
     var think_pro = {
@@ -515,7 +558,7 @@
 
     var think_retro = {
       type: "instructions",
-      pages: ['<div class="instructions"><p>Consider about the choices you made.</p>'],
+      pages: ['<div class="instructions"><p>Consider the choices you made.</p>'],
     show_clickable_nav: true
     };
     timeline.push(think_retro);  
@@ -523,7 +566,7 @@
       
     var motInf_retro_char = {
         type: 'reconstruction',
-        stim_function: sample_function_char,
+        stim_function: sample_function_char_retro,
         starting_value: randStart_retro_char
     }
     timeline.push(motInf_retro_char); 
@@ -543,7 +586,7 @@
       
     var motInf_retro_gc = {
         type: 'reconstruction',
-        stim_function: sample_function_gc,
+        stim_function: sample_function_gc_retro,
         starting_value: randStart_retro_gc
     }
     timeline.push(motInf_retro_gc);  
