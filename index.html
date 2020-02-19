@@ -333,7 +333,7 @@
         
 //CHAR FIRST
         for (j = 0; j < degrade_n; j++) {
-            if(j < 25) {
+            if(j < 15) {
                 var char_half1 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
@@ -346,7 +346,7 @@
             };
 
 
-              if(j == 25) {
+              if(j == 15) {
                 /* define instructions trial */
                 var motInf_active_char = {
                     type: 'reconstruction',
@@ -355,7 +355,7 @@
                 }
                 timeline.push(motInf_active_char);};
 
-              if(j == 25) {
+              if(j == 15) {
                 var motInf_active_char_conf = {
                     type: 'html-slider-response',
                     min: 0,
@@ -367,7 +367,7 @@
                 };
                   timeline.push(motInf_active_char_conf);}; 
 
-              if(j >= 25) {
+              if(j >= 15) {
                 var char_half2 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
@@ -391,7 +391,7 @@
 //GC SECOND
         for (j = 0; j < degrade_n; j++) {
 
-            if(j < 25) {
+            if(j < 15) {
                 var gc_half1 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
@@ -404,7 +404,7 @@
             };
 
 
-              if(j == 25) {
+              if(j == 15) {
                 /* define instructions trial */
                 var motInf_active_gc = {
                     type: 'reconstruction',
@@ -413,7 +413,7 @@
                 }
                 timeline.push(motInf_active_gc);};
             
-              if(j == 25) {
+              if(j == 15) {
                 var motInf_active_gc_conf = {
                     type: 'html-slider-response',
                     min: 0,
@@ -425,7 +425,7 @@
                 };
                   timeline.push(motInf_active_gc_conf);}; 
 
-              if(j >= 25) {
+              if(j >= 15) {
                 var gc_half2 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
@@ -442,7 +442,7 @@
             
 //GC FIRST
         for (j = 0; j < degrade_n; j++) {
-            if(j < 25) {
+            if(j < 15) {
                 var gc_half1 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
@@ -455,7 +455,7 @@
             };
 
 
-              if(j == 25) {
+              if(j == 15) {
                 /* define instructions trial */
                 var motInf_active_gc = {
                     type: 'reconstruction',
@@ -464,7 +464,7 @@
                 }
                 timeline.push(motInf_active_gc);};
             
-              if(j == 25) {
+              if(j == 15) {
                 var motInf_active_gc_conf = {
                     type: 'html-slider-response',
                     min: 0,
@@ -476,7 +476,7 @@
                 };
                   timeline.push(motInf_active_gc_conf);}; 
 
-              if(j >= 25) {
+              if(j >= 15) {
                 var gc_half2 = {
                     type: 'html-button-response',
                     stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/gc.png"></div></div>'],
@@ -500,7 +500,7 @@
 //CHAR SECOND 
         for (j = 0; j < degrade_n; j++) {
 
-                if(j < 25) {
+                if(j < 15) {
                     var char_half1 = {
                         type: 'html-button-response',
                         stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
@@ -512,7 +512,7 @@
                     timeline.push(fixation);
                 };
 
-                  if(j == 25) {
+                  if(j == 15) {
                     /* define instructions trial */
                     var motInf_active_char = {
                         type: 'reconstruction',
@@ -521,7 +521,7 @@
                     }
                     timeline.push(motInf_active_char);};
             
-                  if(j == 25) {
+                  if(j == 15) {
                     var motInf_active_char_conf = {
                         type: 'html-slider-response',
                         min: 0,
@@ -533,7 +533,7 @@
                     };
                       timeline.push(motInf_active_char_conf);}; 
 
-                  if(j >= 25) {
+                  if(j >= 15) {
                     var char_half2 = {
                         type: 'html-button-response',
                         stimulus: ['<div id="wrapper"><div id="leftStim"><img src="img/you.png"></div>'+'<div id="rightStim"><img src="img/char.png"></div></div>'],
@@ -609,47 +609,107 @@
       
       
       
-// ADDITIONAL QUESTIONS
       
+      
+
+      
+      
+      
+// ADDITIONAL QUESTIONS
+    
+          
+    var sample_function_typical = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">Typically when you encounter decisions<br> such this one, how motivated are you <br> to earn money for yourself versus a charity?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for yourself<br>'+
+            
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for ARC<font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #CA0301; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }  
+    
     var motInf_typical = {
-        type: 'html-slider-response',
-        min: 0,
-        max: 10,
-        start: 5,
-        step: 1,
-        stimulus: "<p>Typically when you encounter decisions such this one, <br>how motivated are you to earn money for yourself versus a charity?<br></p>",
-        labels: ['Self (5)', 'Charity (5)'],
-        };
-      timeline.push(motInf_typical);     
-      
+        type: 'reconstruction',
+        stim_function: sample_function_typical,
+        starting_value: randStart_retro_char
+    }
+    timeline.push(motInf_typical);    
       
       
 // ADDITIONAL QUESTIONS
       
+    var sample_function_avgPerson = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">When thinking about the average person,<br> how motivated do you think they are <br> by earning money for themselves versus a charity?</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for yourself<br>'+
+            
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for ARC<font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #CA0301; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }  
+    
     var motInf_avgPerson = {
-        type: 'html-slider-response',
-        min: 0,
-        max: 10,
-        start: 5,
-        step: 1,
-        stimulus: "<p>When thinking about the average person, how motivated do<br> you think they are by earning money for themselves versus a charity?<br></p>",
-        labels: ['Self (5)', 'Charity (5)'],
-        };
-      timeline.push(motInf_avgPerson);  
+        type: 'reconstruction',
+        stim_function: sample_function_avgPerson,
+        starting_value: randStart_retro_char
+    }
+    timeline.push(motInf_avgPerson); 
       
       
 // ADDITIONAL QUESTIONS
-      
+
+    var sample_function_fairQ = function(param){
+        var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
+        var html = 
+           '<p style="font-family:arial;">Consider what you think is a fair amount<br> to be motivated to earn money for <br> oneself versus charity. Please indicate below.</p>'+
+            
+            '<p class = "small" style="font-family:arial;"><font size="2">- Use the "<b>G</b>" and "<b>H</b>" keys to respond<br>'+
+            
+           '- more <b><font color="777777">gray</font></b> = more motivated by money for yourself<br>'+
+            
+           '- more <b><font color="CA0301">red</font></b> = more motivated by money for ARC<font size="4"></p>'+           
+            
+           '<p style="font-family:arial;font-size:95%;"><span style="color: white;">,____</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____________</span><span style="color: lightgrey;">|</span><span style="color: white;">____,</span></p></div>'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #CA0301; '+
+        'width: '+350+'px; height: '+30+'px;"></div></div>'+
+            '<div style="display: block; margin: auto; height: 50px;">'+
+            
+        '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #A0A0A0; '+
+        'width: '+size+'px; height: '+30+'px;"></div></div>'
+        return html;
+    }  
+    
     var motInf_fairQ = {
-        type: 'html-slider-response',
-        min: 0,
-        max: 10,
-        start: 5,
-        step: 1,
-        stimulus: "<p>Consider what you think is a 'fair amount' to be motivated<br> to earn money for oneself versus charity. Please indicate below.<br></p>",
-        labels: ['Self (5)', 'Charity (5)'],
-        };
-      timeline.push(motInf_fairQ);  
+        type: 'reconstruction',
+        stim_function: sample_function_fairQ,
+        starting_value: randStart_retro_char
+    }
+    timeline.push(motInf_fairQ); 
       
       
 // ADDITIONAL QUESTIONS
