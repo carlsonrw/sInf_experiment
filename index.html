@@ -130,6 +130,13 @@
                 margin-left: 200px;
                 text-align: justify;
             }
+            
+            
+            .longQ {
+                margin-right: 300px;
+                margin-left: 300px;
+                text-align: justify;
+            }
 
             #root {
                 background-color: #eee;
@@ -152,23 +159,30 @@
   <body></body>
   <script>
       
+    
+     
+/* create timeline */
+var timeline = [];   
+      
+      
+      
+      
       
  //////////////////////////////////////////////////////////////////////////////////////////////
  /////////////////////////////////////// INSTRUCTIONS ///////////////////////////////////////// 
  ////////////////////////////////////////////////////////////////////////////////////////////// 
 
-    /* create timeline */
-    var timeline = [];
+      
       
       
     /* define instructions trial */
     var instructions = {
       type: "instructions",
-      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning money for yourself, or for the <b>American Red Cross</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning money for yourself or earning credit on a <b>Starbucks eGift Card</b> for yourself.</p><p>When making both types of choices (choices involving charity, or a gift card for yourself), you will have to select between two amounts of <b>money</b> toward each option on the screen.</strong></p></div>',
+      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning <b>money</b> for yourself, or for the <b>American Red Cross</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning two types of gift cards - a <b>Starbucks eGift card</b> and a <b>Home Depot eGift card</b>.</p><p>When making both types of choices (choices involving charity, or gift cards for yourself), you will have to select between two dollar amounts of <b>money</b> toward each option on the screen.</strong></p></div>',
               
-      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the American Red Cross, and 52 choices between money versus a Starbucks eGift Card for yourself. One of these choices will be randomly selected across all participants and implemented at the end of the study. This randomly selected choice will determine the payout size and type. Since there is a good chance one of your choices could be selected, and you do not know which one might count, you should <b>treat each choice as if it were the only one that counts</b>.</p><p>If a choice to donate to the Red Cross is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolific. If a choice to earn gift card credit is selected, a Starbucks eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
+      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the Red Cross, and 52 choices between a Starbucks versus Home Depot gift card for yourself. <br><br>Crucially, for a subset of participants, one of these choices will actually be randomly selected and implemented at the end of the study. This randomly selected choice will determine the payout size and type. Since there is a good chance one of your choices could be selected, and you do not know which one might count, you should <b>treat each choice as if it were the only one that counts</b>.</p><p>If a choice to donate to the Red Cross is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolific. If a choice to earn gift card credit is selected, a Starbucks or Home Depot eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
               
-      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for the Red Cross. Remember, this is real money (e.g, the left option is worth $21). <b>You can only choose one option, and you can do so by clicking on the money box</b></p></div><p><img src="img/ss_choice_char.png"></p>',
+      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for the Red Cross. Remember, this is real money (e.g, the left option is worth $20). <b>You can only choose one option, and you can do so by clicking on the money box</b></p></div><p><img src="img/ss_choice_char.png"></p>',
               
       '<div class = "instructions"><p>Another example of a choice you might encounter, this time between earning money for yourself and earning credit on the Starbucks eGift Card:</p></div><p><img src="img/ss_choice_gc.png"></p>'],
     show_clickable_nav: true
@@ -186,12 +200,11 @@
         '<p style="font-family:arial;font-size: 16px">We will periodically ask you to use colored bars<br> like the ones below to make responses.</p>'+
 
         '<p style="font-family:arial;font-size: 16px">You will use the "<b>G</b>" and "<b>H</b>" keys to respond.</p>'+
-
-        // Bar labels
-        '<p style="font-family:arial;font-size:85%;margin-bottom: 0px"><span style="color: white;">--------</span><span style="color: lightgrey;">1:6</span><span style="color: white;">.....<span style="color: lightgrey;">1:3</span><span style="color: white;">..............</span><span style="color: lightgrey;">1:1</span><span style="color: white;">..............<span style="color: lightgrey;">3:1</span><span style="color: white;">.....</span><span style="color: lightgrey;">6:1</span><span style="color: white;">--------</span></p></div>'+ 
-        // Bar ticks, n = 51 
-            // 50/300, 87.5/262.5, 175/175, 262.5/87.5, 300/50
-        '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;">--------</span><span style="color: lightgrey;">|</span><span style="color: white;">........<span style="color: lightgrey;">|</span><span style="color: white;">...............</span><span style="color: lightgrey;">|</span><span style="color: white;">...............<span style="color: lightgrey;">|</span><span style="color: white;">........</span><span style="color: lightgrey;">|</span><span style="color: white;">--------</span></p></div>'+
+            
+       '<p style="font-family:arial;font-size: 16px">Try using these keys to move the bars now.</p>'+
+            
+        // Bar ticks, n = 51: This code keeps the bar centered
+        '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
             
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #58A5A9; '+
         'width: '+350+'px; height: '+30+'px;"></div></div>'+
@@ -218,15 +231,12 @@
     var function_practice2 = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-        '<p style="font-family:arial;font-size: 16px">You will use these bars to express how much <br>you want one option over the other.</p>'+
+        '<p style="font-family:arial;font-size: 16px">You will use these bars to express <b>how much <br>you want one option over the other</b>.</p>'+
 
         '<p style="font-family:arial;font-size: 16px">Each option will have a color reflected below, and <br>increasing its color indicates that you<br> want that option more relative to the other.</p>'+
 
-         // Bar labels
-        '<p style="font-family:arial;font-size:85%;margin-bottom: 0px"><span style="color: white;">--------</span><span style="color: lightgrey;">1:6</span><span style="color: white;">.....<span style="color: lightgrey;">1:3</span><span style="color: white;">..............</span><span style="color: lightgrey;">1:1</span><span style="color: white;">..............<span style="color: lightgrey;">3:1</span><span style="color: white;">.....</span><span style="color: lightgrey;">6:1</span><span style="color: white;">--------</span></p></div>'+ 
-        // Bar ticks, n = 51 
-            // 50/300, 87.5/262.5, 175/175, 262.5/87.5, 300/50
-        '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;">--------</span><span style="color: lightgrey;">|</span><span style="color: white;">........<span style="color: lightgrey;">|</span><span style="color: white;">...............</span><span style="color: lightgrey;">|</span><span style="color: white;">...............<span style="color: lightgrey;">|</span><span style="color: white;">........</span><span style="color: lightgrey;">|</span><span style="color: white;">--------</span></p></div>'+
+        // Bar ticks, n = 51: This code keeps the bar centered
+        '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
 
         '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #58A5A9; '+
         'width: '+350+'px; height: '+30+'px;"></div></div>'+
@@ -250,7 +260,9 @@
     var function_practice3 = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-        '<p style="font-family:arial;font-size: 16px">If asked how much you want <br><b><font color="8E5485">Option 1</font></b> versus <b><font color="58A5A9">Option 2</font></b>?</p>'+
+        '<p style="font-family:arial;font-size: 16px">Here is an example where we include some<br> labels illustrating different color ratios:</p>'+   
+    
+        '<p style="font-family:arial;font-size: 16px">Imagine you are asked how much you want <br><b><font color="8E5485">Option 1</font></b> versus <b><font color="58A5A9">Option 2</font></b>?</p>'+
 
         '<p style="font-family:arial;font-size: 16px">A response at "6:1" means you want <br><b><font color="8E5485">Option 1</font></b> <i>six times</i> more than <b><font color="58A5A9">Option 2</font></b></p>'+
     
@@ -394,10 +406,10 @@
             var left_char_Stim = youColor_pic
             var left_char_ColorName = youColor_colorName
 
-            var left_gc = 'money'
-            var left_gc_Color = youColor
-            var left_gc_Stim = youColor_pic
-            var left_gc_ColorName = youColor_colorName
+            var left_gc = 'Home Depot'
+            var left_gc_Color = "#E66D2D"
+            var left_gc_Stim = 'gc_homedepot.png'
+            var left_gc_ColorName = 'orange'
         
         var rightNum = 1 
         
@@ -406,9 +418,9 @@
             var right_char_Stim = 'char.png'
             var right_char_ColorName = 'red'
 
-            var right_gc = 'a Starbucks gift card'
+            var right_gc = 'Starbucks'
             var right_gc_Color = '#047655' // green
-            var right_gc_Stim = 'gc.png'
+            var right_gc_Stim = 'gc_starbucks.png'
             var right_gc_ColorName = 'green'
 
         
@@ -420,9 +432,9 @@
             var left_char_Stim = 'char.png'
             var left_char_ColorName = 'red'
 
-            var left_gc = 'a Starbucks gift card'
+            var left_gc = 'Starbucks'
             var left_gc_Color = '#047655' // green
-            var left_gc_Stim = 'gc.png'
+            var left_gc_Stim = 'gc_starbucks.png'
             var left_gc_ColorName = 'green'
             
         var rightNum = 0
@@ -432,10 +444,10 @@
             var right_char_Stim = youColor_pic
             var right_char_ColorName = youColor_colorName
 
-            var right_gc = 'money'
-            var right_gc_Color = youColor
-            var right_gc_Stim = youColor_pic
-            var right_gc_ColorName = youColor_colorName
+            var right_gc = 'Home Depot'
+            var right_gc_Color = "#E66D2D"
+            var right_gc_Stim = 'gc_homedepot.png'
+            var right_gc_ColorName = 'orange'
     };
       
       
@@ -449,7 +461,7 @@
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = want to <br>earn money for <br>'+left_char+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = want to <br>earn money for <br>'+right_char+' more</p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = want to <br>earn money for <br>'+right_char+' more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = want to <br>earn money for <br>'+left_char+' more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
         '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -471,11 +483,11 @@
     var function_gc = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;">How much do you want to earn yourself<br><b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs. <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b>?</p>'+
+           '<p style="font-family:arial;">How much do you want to earn yourself a<br><b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs. <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b> gift card?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
-            
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = want to earn <br>'+left_gc+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = want to earn <br>'+right_gc+' more</p></div></div>'+ 
+
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = want to earn <br>a '+right_gc+' gift card more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = want to earn <br>a '+left_gc+' gift card more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
         '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -500,7 +512,7 @@
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = wanted to <br>earn money for <br>'+left_char+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = wanted to <br>earn money for <br>'+right_char+' more</p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = wanted<br> to earn money for <br>'+right_char+' more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = wanted<br> to earn money for <br>'+left_char+' more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
         '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -514,19 +526,19 @@
         'width: '+size+'px; height: '+30+'px;"></div></div></div>'
         return html;
     }
-    
+  
     
 // GIFTCARD MOTIVE Q (RETROSPECTIVE) # changes "do" to "did"
-    
-    
+      
+  
     var function_gc_retro = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;">How much did you want to earn yourself<br><b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs. <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b>?</p>'+
+           '<p style="font-family:arial;">How much did you want to earn yourself a<br><b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs. <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b> gift card?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
-            
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = wanted to earn <br>'+left_gc+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = wanted to earn <br>'+right_gc+' more</p></div></div>'+ 
+
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = wanted to <br>earn a '+right_gc+' <br>gift card more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = wanted to <br>earn a '+left_gc+' <br>gift card more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
         '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -540,8 +552,8 @@
         'width: '+size+'px; height: '+30+'px;"></div></div></div>'
         return html;
     }
-
-      
+ 
+    
     var think_pro = {
       type: "instructions",
       pages: ['<p>Press next to begin the study.</p>'],
@@ -580,7 +592,7 @@ if(pros_q ==  "pro"){
         max: 7,
         start: 4,
         step: 1,
-        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
         labels: [1,2,3,4,5,6,7],
     };
     timeline.push(motInf_pro_char_conf);
@@ -599,7 +611,7 @@ if(pros_q ==  "pro"){
         max: 7,
         start: 4,
         step: 1,
-        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
         labels: [1,2,3,4,5,6,7],
     };
     timeline.push(motInf_pro_gc_conf);
@@ -660,7 +672,7 @@ if(pros_q ==  "pro"){
       
     var startTask = {
       type: "instructions",
-      pages: ['<p>Continue to the next screen when you are ready to begin the the first set of choices.</p>'],
+      pages: ['<p>Continue to the next screen when you are ready to begin the first set of choices.</p>'],
     show_clickable_nav: true,
     on_finish: function(data) {
         data.loop_order = loop_order,
@@ -681,6 +693,16 @@ if(pros_q ==  "pro"){
       
       
 // BEGINNING OF CHOICE LOOP    
+      
+      
+  
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -721,7 +743,7 @@ if(pros_q ==  "pro"){
                     max: 7,
                     start: 4,
                     step: 1,
-                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
                     labels: [1,2,3,4,5,6,7],
                 };
                   timeline.push(motInf_active_char_conf);}; 
@@ -794,7 +816,7 @@ if(pros_q ==  "pro"){
                     max: 7,
                     start: 4,
                     step: 1,
-                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
                     labels: [1,2,3,4,5,6,7],
                 };
                   timeline.push(motInf_active_gc_conf);}; 
@@ -860,7 +882,7 @@ if(pros_q ==  "pro"){
                     max: 7,
                     start: 4,
                     step: 1,
-                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+                    stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
                     labels: [1,2,3,4,5,6,7],
                 };
                   timeline.push(motInf_active_gc_conf);}; 
@@ -931,7 +953,7 @@ if(pros_q ==  "pro"){
                         max: 7,
                         start: 4,
                         step: 1,
-                        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+                        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you want? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
                         labels: [1,2,3,4,5,6,7],
                     };
                       timeline.push(motInf_active_char_conf);}; 
@@ -965,6 +987,12 @@ if(pros_q ==  "pro"){
          
 
       
+  
+      
+      
+      
+      
+      
       
       
       
@@ -977,7 +1005,7 @@ if(pros_q ==  "pro"){
 
     var fin = {
       type: "instructions",
-      pages: ['<p>You have now completed the main section of the study. <br>We will now ask you just a few questions about the study.</p>'],
+      pages: ['<p>You have now completed the main section of the study. <br>We will now ask you a few more questions about the study.</p>'],
     show_clickable_nav: true
     };
     timeline.push(fin);  
@@ -1005,7 +1033,7 @@ if(pros_q ==  "pro"){
         max: 7,
         start: 4,
         step: 1,
-        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you wanted? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
         labels: [1,2,3,4,5,6,7],
     };
       timeline.push(motInf_pro_retro_conf);  
@@ -1025,14 +1053,19 @@ if(pros_q ==  "pro"){
         max: 7,
         start: 4,
         step: 1,
-        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported your wants? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
+        stimulus: "<p>How <b>confident</b> are you that you <br>accurately reported what you wanted? <br> <div class='flex-container'><div>Not at all</div><div>Extremely</div></div>",
         labels: [1,2,3,4,5,6,7],
     };
       timeline.push(motInf_retro_gc_conf);     
       
       
 
-
+    var additionalQs = {
+      type: "instructions",
+      pages: ['<p>We will now ask some new questions about<br>your thoughts and feelings about the study.</p>'],
+    show_clickable_nav: true
+    };
+    timeline.push(additionalQs);  
       
       
       
@@ -1043,11 +1076,11 @@ if(pros_q ==  "pro"){
         var function_char_fairQ = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;">At minimum, how much is a <b>fair</b> amount<br> to want to earn money for <b><font color="'+left_char_Color+'">'+left_char+'</font></b><br> vs. <b><font color="'+right_char_Color+'">'+right_char+'</font></b> in this study? <br>Please indicate below.</p>'+
+           '<p style="font-family:arial;">At minimum, how much is a <b>fair amount</b><br> to want to earn money for <b><font color="'+left_char_Color+'">'+left_char+'</font></b><br> vs. <b><font color="'+right_char_Color+'">'+right_char+'</font></b> in this study?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = wanting to <br>earn money for <br>'+left_char+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = wanting to <br>earn money for <br>'+right_char+' more</p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_char_Color+'">'+right_char_ColorName+'</font></b> = wanting to <br>earn money for <br>'+right_char+' more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_char_Color+'">'+left_char_ColorName+'</font></b> = wanting to <br>earn money for <br>'+left_char+' more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1068,11 +1101,11 @@ if(pros_q ==  "pro"){
     var function_gc_fairQ = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;">At minimum, how much is a <b>fair</b> amount <br>to want to earn yourself<br><b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs. <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b><br>in this study? Please indicate below.</p>'+
+           '<p style="font-family:arial;">At minimum, how much is a <b>fair amount</b> <br>to want to earn yourself a <b><font color="'+left_gc_Color+'">'+left_gc+'</font></b> vs.<br> <b><font color="'+right_gc_Color+'">'+right_gc+'</font></b> gift card in this study?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = wanting to earn <br>'+left_gc+' more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = wanting to earn <br>'+right_gc+' more</p></div></div>'+ 
+            '<div class="flex-container"><div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+right_gc_Color+'">'+right_gc_ColorName+'</font></b> = wanting to<br> earn a '+right_gc+' <br> gift card more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;"><br>more <b><font color="'+left_gc_Color+'">'+left_gc_ColorName+'</font></b> = wanting to <br>earn a '+left_gc+' <br> gift card more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                     // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1105,15 +1138,14 @@ if(pros_q ==  "pro"){
           
 // CHARITY AVERAGE PERSON
       
-      
         var function_char_avgPerson = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;"><b>Think about the average person.</b><br>How much do you think they would want <br>to earn money for <b><font color="777777">themselves</font></b><br> vs. <b><font color="D54848">the Red Cross</font></b> in this study?</p>'+
+           '<p style="font-family:arial;"><b>Think about the average person.</b><br>How much do you think they would want <br>to earn money for <b><font color="'+youColor+'">themselves</font></b><br> vs. <b><font color="D54848">the Red Cross</font></b> in this study?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="777777">gray</font></b> = want to earn <br>money more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="D54848">red</font></b> = want to earn <br>a Starbucks gift card more</p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+youColor+'">'+youColor_colorName+'</font></b> = want to earn <br>money more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="D54848">red</font></b> = want to earn <br>a Starbucks gift card more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1123,7 +1155,7 @@ if(pros_q ==  "pro"){
             'width: '+350+'px; height: '+30+'px;"></div></div>'+
                 '<div style="display: block; margin: auto; height: 50px;">'+
 
-            '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #777777;'+
+            '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  '+youColor+';'+
             'width: '+size+'px; height: '+30+'px;"></div></div></div>'
             return html;
             }
@@ -1134,11 +1166,11 @@ if(pros_q ==  "pro"){
     var function_gc_avgPerson = function(param){
         var size = 50 + Math.floor(param*250); /* min 50/350, max 300/350 */
         var html = 
-           '<p style="font-family:arial;"><b>Think about the average person.</b><br>How much do you think they would want <br>to earn themselves <b><font color="777777">money</font></b><br> vs. <b><font color="106E32">a Starbucks gift card</font></b> in this study?</p>'+
+           '<p style="font-family:arial;"><b>Think about the average person.</b><br>How much do you think they would want <br>to earn themselves a <b><font color="E66D2D">Home Depot</font></b><br> vs. <b><font color="047655">Starbucks</font></b> gift card in this study?</p>'+
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2">Use "<b>G</b>" and "<b>H</b>" to respond</p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="777777">gray</font></b> = want to earn <br>money more</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="106E32">green</font></b> = want to earn <br>a Starbucks gift card more</p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="E66D2D">orange</font></b> = want to earn <br>a Home Depot gift card more<br><br><font size="+1">←</font></p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="047655">green</font></b> = want to earn <br>a Starbucks gift card more<br><br><font size="+1">→</font></p></div></div>'+ 
             
                     // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1148,7 +1180,7 @@ if(pros_q ==  "pro"){
             'width: '+350+'px; height: '+30+'px;"></div></div>'+
                 '<div style="display: block; margin: auto; height: 50px;">'+
 
-            '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #777777;'+
+            '<div style="display: block; position: absolute; align: center; margin: auto; background-color:  #E66D2D;'+
             'width: '+size+'px; height: '+30+'px;"></div></div></div>'
             return html;
     }
@@ -1170,15 +1202,6 @@ if(pros_q ==  "pro"){
     }
     timeline.push(motInf_gc_avgPerson);   
       
-      
-      
-      
-      
-      
-// ADDITIONAL QUESTIONS
-      
-    // CHARITY AVERAGE PERSON
-      
     
       
     
@@ -1192,7 +1215,7 @@ if(pros_q ==  "pro"){
         max: 7,
         start: 4,
         step: 1,
-        stimulus: "<p>When asked about your wants in the study,<br> did you feel any personal or social pressure<br> to respond a certain way?<br></p><div class='flex-container'><div>Not at all</div><div>Very much so</div></div>",
+        stimulus: "<p>When asked about what you wanted in the study,<br> did you feel any personal or social pressure<br> to respond a certain way?<br></p><div class='flex-container'><div>Not at all</div><div>Very much so</div></div>",
         labels: [1,2,3,4,5,6,7],
     };
     timeline.push(motInf_pressure);
@@ -1201,16 +1224,22 @@ if(pros_q ==  "pro"){
    var mtvScale = {
           type: 'survey-text',
           questions: [
-            {prompt: "Please use this space to share any thoughts you had on the<br> color measure that we used to ask about your wants.",rows: 10, columns: 100}
+            {prompt: "We asked you to report how much you wanted<br> one option over another using <b>colored bars</b>. We would <br>appreciate any feedback on your experience responding this way.<br><br> Please use this space to share any thoughts about this.",rows: 10, columns: 100}
           ],
         }; 
     timeline.push(mtvScale);
       
       
     var motInf_believable = {
-        type: 'html-button-response',
-        stimulus: '<p>Were you skeptical about any information we provided about the study?</p>',
-        choices: ['Yes', 'No']
+        type: 'html-slider-response',
+        min: 1,
+        max: 7,
+        start: 4,
+        step: 1,
+        stimulus: "<div class='longQ'><p>In today's study, you made choices involving various incentives including money for yourself vs. the Red Cross, and a Starbucks vs. Home Depot gift card for yourself. We informed you that, for a subset of participants in this study, one of these choices would really count. <br><br><b>Did we communicate the fact that you could earn real money, gift cards, or money for charity, clearly and transparently enough in our instructions?</b><br><br>Please answer this question honestly and openly. This will help us to discover imperfections in our instructions.</p></div>",
+        labels: ["1<br> <font size='-2'>(No, not at all)</font>",2,3,4,"5 <br><font size='-2'>(Yes, fully)</font>"],
+        slider_width: 300,
+        prompt: ""
     };
     timeline.push(motInf_believable);
       
@@ -1218,10 +1247,18 @@ if(pros_q ==  "pro"){
     var openSkeptic = {
           type: 'survey-text',
           questions: [
-            {prompt: "If you said 'Yes', please use this space to briefly elaborate<br> on any aspect(s) of the study you were skeptical about:",rows: 10, columns: 100}
+            {prompt: "<div class='longQ'>If anything was unclear or during the study you had other doubts or remarks about any part of our instructions, please let us know why:</div>",rows: 10, columns: 100}
           ],
         }; 
     timeline.push(openSkeptic);
+      
+    var finalWord = {
+          type: 'survey-text',
+          questions: [
+            {prompt: "Apart from this, do you have any other remarks<br> or comments about today’s study?",rows: 10, columns: 100}
+          ],
+        }; 
+    timeline.push(finalWord);
       
  
     var prolific_id = {
