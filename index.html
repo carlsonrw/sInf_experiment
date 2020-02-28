@@ -165,6 +165,9 @@
 /* create timeline */
 var timeline = []; 
       
+    
+ 
+      
       
 //Function to check whether consent has been given
 var check_consent = function(elem) {
@@ -205,7 +208,7 @@ var check_consent = function(elem) {
               
       '<div class="instructions"><p>You will make 52 choices between money for yourself versus the Red Cross, and 52 choices between a Starbucks versus Home Depot gift card for yourself. <br><br>Crucially, for a subset of participants, one of these choices will actually be randomly selected and implemented at the end of the study. This randomly selected choice will determine the payout size and type. Since there is a good chance one of your choices could be selected, and you do not know which one might count, you should <b>treat each choice as if it were the only one that counts</b>.</p><p>If a choice to donate to the Red Cross is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolific. If a choice to earn gift card credit is selected, a Starbucks or Home Depot eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
               
-      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for the Red Cross. Remember, this is real money (e.g, the left option is worth $20). <b>You can only choose one option. You will choose by clicking on one of the two money boxs.</b></p></div><p><img src="img/ss_choice_char.png"></p>',
+      '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for the Red Cross. Remember, this is real money (e.g, the left option is worth $20). <b>You can only choose one option. You will choose by clicking on one of the two boxes.</b></p></div><p><img src="img/ss_choice_char.png"></p>',
               
       '<div class = "instructions"><p>Another example of a choice you might encounter - this time between earning a $20 Starbucks gift card and earning a $20 Home Depot gift card:</p></div><p><img src="img/ss_choice_gc.png"></p>'],
     show_clickable_nav: true
@@ -1036,7 +1039,7 @@ if(pros_q ==  "pro"){
 
     var think_retro = {
       type: "instructions",
-      pages: ['<p>Consider the choices you made.</p>'],
+      pages: ['<p>Consider what you wanted throughout the choice task.</p>'],
     show_clickable_nav: true
     };
     timeline.push(think_retro);  
@@ -1242,6 +1245,54 @@ if(pros_q ==  "pro"){
         labels: [1,2,3,4,5,6,7],
     };
     timeline.push(motInf_pressure);
+      
+      
+      
+      
+    var DG_exp = {
+        type: 'html-slider-response',
+        min: 1,
+        max: 5,
+        start: 3,
+        step: 1,
+        stimulus: "<p>Have you participated in similar studies in which<br> you had to choose between money for yourself or a charity?</p>",
+        labels: ["1<br> <font size='-2'>Never</font>","2<br> <font size='-2'>A few</font>","3<br> <font size='-2'>More than a few</font>","4<br> <font size='-2'>Many</font>","5 <br><font size='-2'>Countless</font>"],
+        slider_width: 400,
+        prompt: "",
+    };
+    timeline.push(DG_exp); 
+      
+    var GC_exp = {
+        type: 'html-slider-response',
+        min: 1,
+        max: 5,
+        start: 3,
+        step: 1,
+        stimulus: "<p>Have you participated in similar studies in which<br> you had to choose gift between different gift cards for yourself?</p>",
+        labels: ["1<br> <font size='-2'>Never</font>","2<br> <font size='-2'>A few</font>","3<br> <font size='-2'>More than a few</font>","4<br> <font size='-2'>Many</font>","5 <br><font size='-2'>Countless</font>"],
+        slider_width: 400,
+        prompt: "",
+    };
+    timeline.push(GC_exp); 
+      
+      
+    var gen = {
+        type: 'html-button-response',
+        stimulus: 'Gender:<br>',
+        choices: ['Male', 'Female','Other'],
+    };
+    timeline.push(gen);  
+      
+      
+    var age = {
+          type: 'survey-text',
+          questions: [
+            {prompt: "Age:"}
+          ],
+        }; 
+    timeline.push(age);
+    
+      
      
       
    var mtvScale = {
@@ -1260,8 +1311,8 @@ if(pros_q ==  "pro"){
         start: 3,
         step: 1,
         stimulus: "<div class='longQ'><p>In today's study, you made choices involving various incentives including money for yourself or charity, and two gift cards for yourself. You were informed that for a subset of participants in this study, one of these choices really counts. <br><br><b>Did we communicate the fact that you could earn real money, gift cards, or money for charity, clearly and transparently enough in our instructions?</b><br><br>Please answer this question honestly and openly. This will help us to discover imperfections in our instructions.</p></div>",
-        labels: ["1<br> <font size='-2'>(No, not at all)</font>",2,3,4,"5 <br><font size='-2'>(Yes, fully)</font>"],
-        slider_width: 300,
+        labels: ["1<br> <font size='-2'>No, not at all</font>",2,3,4,"5 <br><font size='-2'>Yes, fully</font>"],
+        slider_width: 400,
         prompt: ""
     };
     timeline.push(motInf_believable);
@@ -1301,6 +1352,16 @@ if(pros_q ==  "pro"){
         choices: ['CLICK HERE TO FINISH']
     };
     timeline.push(conclusion);
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
 // DEBUGGING
       
