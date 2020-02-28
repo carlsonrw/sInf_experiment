@@ -204,9 +204,9 @@ var check_consent = function(elem) {
     /* define instructions trial */
     var instructions = {
       type: "instructions",
-      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning <b>money</b> for yourself, or for the <b>American Red Cross</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning two types of gift cards - a <b>Starbucks eGift card</b> and a <b>Home Depot eGift card</b>.</p><p>When making both types of choices, you will have to select between two dollar amounts of <b>money or gift card credit</b> toward each option on the screen.</strong></p></div>',
+      pages: ['<div class="instructions"><p><strong>Please read these instructions carefully</strong></p><p>In this study you will make a series of choices. In some cases, you will choose between earning <b>money for yourself</b>, or for the <b>American Red Cross</b> - a humanitarian organization that provides emergency assistance, disaster relief, and disaster preparedness education in the US.</p><p> In other cases, you will choose between earning two types of gift cards - a <b>Starbucks eGift card</b> and a <b>Home Depot eGift card</b>.</p><p>When making both types of choices, you will have to select between two dollar amounts of <b>money or gift card credit</b>.</strong></p></div>',
               
-      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the Red Cross, and 52 choices between a Starbucks versus Home Depot gift card for yourself. <br><br>Crucially, for a subset of participants, one of their choices will actually be randomly selected and implemented at the end of the study. This randomly selected choice will determine the payout size and type. Since there is a good chance one of your choices could be selected, and you do not know which one might count, you should <b>treat each choice as if it were the only one that counts</b>.</p><p>If a choice to donate to the Red Cross is selected, money will be donated at the end of the study. If a choice to earn money is selected, money will be received as a bonus on Prolific. If a choice to earn gift card credit is selected, a Starbucks or Home Depot eGift Card will be received via Prolific as well.</p><p>Your behavior in the study is confidential.</p></div>',
+      '<div class="instructions"><p>You will make 52 choices between money for yourself versus the Red Cross, and 52 choices between a Starbucks or Home Depot gift card for yourself. <br><br>Crucially, for a subset of participants, one of their choices will be randomly selected and actually implemented at the end of the study. This randomly selected choice will determine the payout size and type. Since there is a good chance one of your choices could be selected, and you do not know which one might count, you should <b>treat each choice as if it were the only one that counts</b>.</p><p>If a choice to donate to the Red Cross is selected, money will be donated at the end of the study. If a choice to earn money is selected, the participant will receive this money as a bonus on Prolific. If a choice to earn gift card credit is selected, the participant will receive a Starbucks or Home Depot eGift Card via Prolific.</p><p>Your behavior in the study is confidential.</p></div>',
               
       '<div class = "instructions"><p>See below for an example of a choice you might encounter between earning money for yourself and earning money for the Red Cross. Remember, this is real money (e.g, the left option is worth $20). <b>You can only choose one option. You will choose by clicking on one of the two boxes.</b></p></div><p><img src="img/ss_choice_char.png"></p>',
               
@@ -597,7 +597,7 @@ if(pros_q ==  "pro"){
     
     var think_pro2 = {
       type: "instructions",
-      pages: ['<p>Think about the choices you are about to make.</p>'],
+      pages: ['<p>Think about the different options you can pursue in this study.</p>'],
     show_clickable_nav: true
     };
     timeline.push(think_pro2); 
@@ -1031,7 +1031,7 @@ if(pros_q ==  "pro"){
 
     var fin = {
       type: "instructions",
-      pages: ['<p>You have now completed the main section of the study. <br>We will now ask you a few more questions about the study.</p>'],
+      pages: ['<p>You have now completed the main section of the study. <br>We will now ask you a few more questions.</p>'],
     show_clickable_nav: true
     };
     timeline.push(fin);  
@@ -1171,7 +1171,7 @@ if(pros_q ==  "pro"){
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2"></p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="'+youColor+'">'+youColor_colorName+'</font></b> = want to earn <br>money more<br><br><font size="+1">←</font> "G"</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="D54848">red</font></b> = want to earn <br>a Starbucks gift card more<br><br>"H" <font size="+1">→</font></p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="D54848">red</font></b> = want to earn <br>money for the Red Cross more<br><br><font size="+1">←</font> "G"</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b>   <font color="'+youColor+'">'+youColor_colorName+'</font></b> = want to earn <br>money for themselves more<br><br>"H" <font size="+1">→</font></p></div></div>'+ 
             
                 // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1196,7 +1196,7 @@ if(pros_q ==  "pro"){
             
             '<p class = "small" style="font-family:arial;margin-top: 25px;margin-bottom:5px"><font size="2"></p>'+
             
-           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="E66D2D">orange</font></b> = want to earn <br>a Home Depot gift card more<br><br><font size="+1">←</font> "G"</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="047655">green</font></b> = want to earn <br>a Starbucks gift card more<br><br>"H" <font size="+1">→</font></p></div></div>'+ 
+           '<div class="flex-container"><div><p class = "small" style="font-family:arial;">more <b><font color="047655">green</font></b> = want to earn <br>a Starbucks gift card more<br><br><font size="+1">←</font> "G"</p></div>'+'<div><p class = "small" style="font-family:arial;">more <b><font color="E66D2D">orange</font></b> = want to earn <br>a Home Depot gift card more<br><br>"H" <font size="+1">→</font></p></div></div>'+ 
             
                     // Bar ticks, n = 51
             '<p style="font-family:arial;font-size:100%;margin-bottom: 10px;margin-top: 0px"><span style="color: white;font-size:18px">--------</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">...............<span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">........</span><span style="color: white;font-size:18px">|</span><span style="color: white;font-size:18px">--------</span></p></div>'+
@@ -1345,7 +1345,7 @@ if(pros_q ==  "pro"){
     };
     timeline.push(prolific_id);
 
-    var platformLink = 'https://app.prolific.co/submissions/complete?cc=4P2BFNQ2';
+    var platformLink = 'https://app.prolific.co/submissions/complete?cc=1E12AFFE';
     var conclusion = {
         type: 'html-button-response',
         stimulus: '<p>Please copy the link below <b>and click the FINISH button below</b>.</p><p>Then paste the link in your browser to recieve your payment.</p><p>Thank you.</p><p><b>' + platformLink + '</b></p>',
